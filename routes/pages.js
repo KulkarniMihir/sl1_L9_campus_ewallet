@@ -22,7 +22,18 @@ router.get('/home', (req, res, next) => {
     let user = req.session.user;
 
     if(user) {
-        res.render('home', {opp:req.session.opp, name:user.fullname});
+        res.render('home', {opp:req.session.opp, name:user.fullname, balance:user.balance, id:user.id, username:user.username});
+        return;
+    }
+    res.redirect('/');
+});
+
+// Get about page
+router.get('/about', (req, res, next) => {
+    let user = req.session.user;
+
+    if(user) {
+        res.render('about', {opp:req.session.opp, name:user.fullname});
         return;
     }
     res.redirect('/');
